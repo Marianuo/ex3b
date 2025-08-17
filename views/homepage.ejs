@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome <%= user.first_name %>!</title>
+  <link rel="stylesheet" href="/hpstyle.css" />
+</head>
+<body>
+  <script src="homepage.js" defer></script>
+  <header class="header">
+    <h1>PoseGuard</h1>
+    <a href="/logout" class="btn">Logout</a>
+  </header>
+
+  <main class="container">
+    <!-- User card -->
+    <section class="card profile">
+      <img class="avatar" src="/profile-pic/<%= user.profile_pic %>" alt="Profile picture" />
+      <h2><%= user.first_name %> <%= user.last_name %></h2>
+      <p class="muted">@<%= user.username %></p>
+      <p><%= user.email %></p>
+      <p><%= user.dob %></p>
+    </section>
+
+    <!-- Processing card -->
+    <section class="card">
+      <h3>Run Detection</h3>
+      <form id="run-form" action="/process-video" method="POST" enctype="multipart/form-data">
+        <input type="file" name="video" accept="video/mp4,video/quicktime" required />
+        <div class="actions">
+          <button id="run-btn" class="btn primary" type="submit">Run</button>
+          <button id="stop-btn" class="btn danger" type="button" disabled>Stop</button>
+        </div>
+      </form>
+
+      <div id="progress" class="console"></div>
+    </section>
+  </main>
+
+ 
+</body>
+</html>
